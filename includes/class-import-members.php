@@ -2,14 +2,14 @@
 
 class MemberImporter {
     public function __construct() {
-        // Hook into admin_init for member import
+      
         add_action('admin_init', array($this, 'import_free_members'));
 
     }
 
     public function import_free_members() {
         if (isset($_GET['import_free_members']) && current_user_can('administrator')) {
-            // Do the script for fetching users and inserting into the custom WordPress table here.
+         
 
             global $wpdb;
 
@@ -33,13 +33,13 @@ class MemberImporter {
 
             foreach ($subscribers as $subscriber) {
                 $user_id = $subscriber->ID;
-                // Check if the user_id exists in the custom table
+                
                 $existing_entry = $wpdb->get_row(
                     $wpdb->prepare("SELECT * FROM $table_name WHERE user_id = %d", $user_id)
                 );
 
                 if (!$existing_entry) {
-                    // User doesn't exist in the custom table, insert the data
+                    
                     $data_to_insert = array(
                         'user_id' => $user_id,
                         'start_date' => $current_date
@@ -60,10 +60,6 @@ class MemberImporter {
 
 }   
 
-add_action('plugins_loaded', 'plugin_init');
 
-function plugin_init() {  
-    $member_importer = new MemberImporter();
-}
 
 ?>

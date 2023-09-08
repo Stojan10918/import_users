@@ -4,7 +4,7 @@
 Plugin Name:	Import and Endpooint for Users
 Description:	Using this plugin you will be able to iport users
 Version:		1.0.0
-Author:			Someone
+Author:			Stojan Gjorgiev
 */
 
 
